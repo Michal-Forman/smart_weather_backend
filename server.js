@@ -4,6 +4,8 @@ const app = express();
 const cors = require("cors");
 const functions = require("./functions.js");
 
+const port = process.env.PORT || 3000;
+
 // Enable CORS
 app.use(cors());
 
@@ -51,6 +53,6 @@ app.get("/:cords", function (req, res) {
     });
 });
 
-app.listen(process.env.PORT || 3000, function () {
-  console.log("Server started on port 3000");
+app.listen(port, function () {
+  console.log(`Server started on port ${port}`);
 });

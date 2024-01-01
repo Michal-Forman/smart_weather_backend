@@ -7,8 +7,22 @@ function getSunscreenNeed(uvIndex) {
 }
 
 function getUmbrellaNeed(hourlyData) {
-  highestRainIntensity = 0;
-  for (let i = 0; i < 7; i++) {
+  let firstHourIndex;
+  let highestRainIntensity = 0;
+
+  // Get comparable time
+  let today = new Date();
+  today.setMinutes(0, 0, 0);
+  today = today.toISOString();
+  today = today.replace(/\.\d{3}/, "");
+
+  // Find this hour in hourly data
+  hourlyData.forEach((hour, index) => {
+    if (hour.time === today) {
+      firstHourIndex = index;
+    }
+  });
+  for (let i = firstHourIndex; i < 7 + firstHourIndex; i++) {
     if (hourlyData[i].values.rainIntensity > highestRainIntensity) {
       highestRainIntensity = hourlyData[i].values.rainIntensity;
     }
