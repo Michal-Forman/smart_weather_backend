@@ -11,6 +11,7 @@ app.use(cors());
 
 app.get("/:cords", function (req, res) {
   const cords = req.params.cords;
+  console.log(cords);
   link = `https://api.tomorrow.io/v4/weather/forecast?location=${cords}&apikey=${process.env.TOMORROW_API_KEY}`;
   fetch(link)
     .then((response) => {
@@ -40,7 +41,7 @@ app.get("/:cords", function (req, res) {
 
       // Outdoor
       let outdoorActivities = functions.getOutdoorActivities(
-        data.timelines.daily[0].values.rainIntensityAvg,
+        data.timelines.hourly,
       );
       results.outdoorActivities = outdoorActivities;
 
