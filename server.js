@@ -10,8 +10,10 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 
 app.get("/:cords", function (req, res) {
+  console.log("1");
+  console.time("timerLabel");
   const cords = req.params.cords;
-  console.log(cords);
+  // console.log(cords);
   link = `https://api.tomorrow.io/v4/weather/forecast?location=${cords}&apikey=${process.env.TOMORROW_API_KEY}`;
   fetch(link)
     .then((response) => {
@@ -46,6 +48,8 @@ app.get("/:cords", function (req, res) {
       results.outdoorActivities = outdoorActivities;
 
       // Prepare and send results
+      console.timeEnd("timerLabel");
+      console.log("2");
       res.send(results);
     })
     .catch((error) => {
