@@ -33,7 +33,7 @@ function getUmbrellaNeed(hourlyData) {
 }
 
 function getOutfit(temperature) {
-  return 1 / (1 + 1.2 ** (-temperature + 12));
+  return 1 / (1 + 1.123 ** (-temperature + 8.833));
 }
 
 function getOutdoorActivities(hourlyData) {

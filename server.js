@@ -10,7 +10,6 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 
 app.get("/:cords", function (req, res) {
-  console.log("1");
   console.time("timerLabel");
   const cords = req.params.cords;
   // console.log(cords);
@@ -37,7 +36,7 @@ app.get("/:cords", function (req, res) {
 
       // Outfit
       let outfit = functions.getOutfit(
-        data.timelines.daily[0].values.temperatureAvg,
+        data.timelines.daily[0].values.temperatureApparentAvg,
       );
       results.outfit = outfit;
 
@@ -48,8 +47,8 @@ app.get("/:cords", function (req, res) {
       results.outdoorActivities = outdoorActivities;
 
       // Prepare and send results
+      results.json = data;
       console.timeEnd("timerLabel");
-      console.log("2");
       res.send(results);
     })
     .catch((error) => {
