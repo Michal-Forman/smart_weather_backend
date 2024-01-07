@@ -22,7 +22,10 @@ function getUmbrellaNeed(hourlyData) {
       firstHourIndex = index;
     }
   });
-  for (let i = firstHourIndex; i < 7 + firstHourIndex; i++) {
+  now = new Date().getUTCHours() + 1;
+  console.log(now);
+  hoursNeeded = 18 - now;
+  for (let i = firstHourIndex; i < hoursNeeded + firstHourIndex + 1; i++) {
     if (hourlyData[i].values.rainIntensity > highestRainIntensity) {
       highestRainIntensity = hourlyData[i].values.rainIntensity;
     }

@@ -46,6 +46,8 @@ app.get("/:cords", function (req, res) {
       );
       results.outdoorActivities = outdoorActivities;
 
+      // Alerts
+
       // Prepare and send results
       results.json = data;
       console.timeEnd("timerLabel");
