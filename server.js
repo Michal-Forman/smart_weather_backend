@@ -10,10 +10,8 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 
 app.get("/:cords", function (req, res) {
-  console.time("timerLabel");
   const cords = req.params.cords;
   // console.log(cords);
-  /*
   link = `https://api.tomorrow.io/v4/weather/forecast?location=${cords}&apikey=${process.env.TOMORROW_API_KEY}`;
   fetch(link)
     .then((response) => {
@@ -47,25 +45,23 @@ app.get("/:cords", function (req, res) {
       );
       results.outdoorActivities = outdoorActivities;
 
-      // Alerts
-      */
-  // Testing because of API limit
+      res.send(results);
+    })
+    .catch((error) => {
+      // Handle errors
+      console.error("Fetch error:", error);
+    });
+});
+
+app.get("/testing/:cords", function (req, res) {
+  const cords = req.params.cords;
   let results = {};
   results.umbrellaNeed = 0.8;
   results.sunscreenNeed = 0.4;
   results.outdoorActivities = 0.3;
   results.outfit = 0.9;
-  // Prepare and send results
-  // results.json = data;
-  console.timeEnd("timerLabel");
+  results.cords = cords;
   res.send(results);
-
-  /* })
-    .catch((error) => {
-      // Handle errors
-      console.error("Fetch error:", error);
-    });
-  */
 });
 
 app.listen(port, function () {
